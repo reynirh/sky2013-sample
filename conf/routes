@@ -30,7 +30,7 @@ GET     /                           controllers.Application.helloSky
 
 
 
-
+GET     /akka                         controllers.AsyncDemo.helloAkka
 
 
 GET     /speakers                         controllers.Application.helloSpeakers

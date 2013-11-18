@@ -6,13 +6,11 @@ import scala.xml._
 import scala.io._
 
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.libs.Akka
+
 import scala.concurrent.Future
 import scala.concurrent.duration._
 import play.mvc.Http.Response
 import play.api.libs.ws.WS
-import akka.actor.{Actor, Props}
-import play.cache.Cache
 
 object Application extends Controller {
 
@@ -53,7 +51,7 @@ object Application extends Controller {
 
   def descriptionUpdate(woeid: Integer) = Action.async {
     WS.url(weatherUrl + woeid ).get().map { response =>
-      Ok((response.xml \\ "description").text)
+      Ok ((response.xml \\ "description").text)
     }
   }
 
