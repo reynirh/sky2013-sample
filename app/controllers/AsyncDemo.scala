@@ -16,13 +16,6 @@ import play.api.Play.current
 import controllers.Application.weather
 
 
-/**
-  * Created with IntelliJ IDEA.
- * User: reynir
- * Date: 17/11/13
- * Time: 22:18
- * To change this template use File | Settings | File Templates.
- */
 object AsyncDemo extends Controller {
 
 
@@ -46,17 +39,18 @@ object AsyncDemo extends Controller {
       case woeid: Integer => {
 
         val weatherResponse = scala.xml.XML.load(Application.weatherUrl + woeid  )
+        // hér er smá bið til að tryggja að sýnidæmið taki nokkrar sekúndur.
         Thread.sleep(5000)
 
         val desc: String = (weatherResponse \\  "description"  ).text
         val city: String = (weatherResponse \\ "location" \\"@city").text
         val temp: String = (weatherResponse \\ "condition" \\"@temp").text
-
+          // niðurstaðan skrifast í logg hér - en gæti skrifast út t.d.
         Logger.info("read "+ city+ ":"+ temp)
 
         sender ! weather (desc,city,temp, woeid)
       }
-      case none => NoContent
+      //case none => (NoContent)
     }
   }
 
