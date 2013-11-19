@@ -3,43 +3,47 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.helloSky
 
 
+# dæmi 1
+GET     /                                 controllers.Application.helloSky
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-GET     /akka                         controllers.AsyncDemo.helloAkka
-
-
-GET     /speakers                         controllers.Application.helloSpeakers
+# dæmi 2
 GET     /vedur                            controllers.Application.vedurFrettir
+# dæmi 3
 GET     /vedur/:id                        controllers.Application.descriptionUpdate(id: Integer)
-GET     /vedur1                           controllers.Application.vedurFrettir1
+
+# dæmi 4  async
 GET     /vedurMaxTemp                     controllers.Application.vedurMaxTemp
 
-#GET     /vedurAkka                           controllers.Application.vedurFrettirAkka
+GET     /akka                             controllers.AsyncDemo.helloAkka
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+
+
+#GET     /speakers                         controllers.Application.helloSpeakers

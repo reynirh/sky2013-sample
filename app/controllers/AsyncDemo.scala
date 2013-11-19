@@ -8,9 +8,11 @@ import akka.pattern.ask
 import scala.concurrent.duration._
 import play.api._
 import play.api.mvc._
+import play.api.libs.iteratee._
 import scala.io._
 import play.api.libs.concurrent.Akka
 import play.api.Play.current
+
 import controllers.Application.weather
 
 
@@ -24,6 +26,7 @@ import controllers.Application.weather
 object AsyncDemo extends Controller {
 
 
+  // dæmi 5 Actor based tékk á veðrinu í Reykjavík.
 
   def helloAkka = Action {
     val actorname = "myactor"+ System.nanoTime()
@@ -38,24 +41,24 @@ object AsyncDemo extends Controller {
   }
 
 
-  val weatherUrl:String = "http://weather.yahooapis.com/forecastrss?u=c&w="
-
   class HelloActor extends Actor {
     def receive = {
       case woeid: Integer => {
-      Logger.info("woeid: "+ woeid)
-      val weatherResponse = scala.xml.XML.load(weatherUrl + woeid  )
-      val desc: String = (weatherResponse \\  "description"  ).text
-      val city: String = (weatherResponse \\ "location" \\"@city").text
-      val temp: String = (weatherResponse \\ "condition" \\"@temp").text
-      Logger.info("read "+ city+ ":"+ temp)
-      sender ! weather (desc,city,temp, woeid)
+
+        val weatherResponse = scala.xml.XML.load(Application.weatherUrl + woeid  )
+        Thread.sleep(5000)
+
+        val desc: String = (weatherResponse \\  "description"  ).text
+        val city: String = (weatherResponse \\ "location" \\"@city").text
+        val temp: String = (weatherResponse \\ "condition" \\"@temp").text
+
+        Logger.info("read "+ city+ ":"+ temp)
+
+        sender ! weather (desc,city,temp, woeid)
       }
       case none => NoContent
-
     }
   }
-
 
 }
 

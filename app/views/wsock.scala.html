@@ -20,7 +20,7 @@
         <![endif]-->
         <script type="text/javascript">
             $(function() {
-                ws = new WebSocket("@routes.AsyncDemo.stream.webSocketURL()");
+                ws = new WebSocket("routes.AsyncDemo.stream.webSocketURL()");
                 $target = $('#feed');
                 i = 0;
                 ws.onmessage = function(msg) {
@@ -67,7 +67,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         @for(w <- weather){
-                        <li><a onclick="updateWeather('@routes.Application.vedurFrettir/@w.woeid');">@w.city</li>
+                        <li><a onclick="updateWeather('routes.Application.vedurFrettir/@w.woeid');">@w.city</li>
                         }
                     </ul>
                 </div>
