@@ -18,18 +18,9 @@ GET     /vedurMaxTemp                     controllers.Application.vedurMaxTemp
 
 GET     /akka                             controllers.AsyncDemo.helloAkka
 
+GET     /comet                             controllers.AsyncDemo.comet
 
-
-
-
-
-
-
-
-
-
-
-
+#GET     /socket                             controllers.AsyncDemo.socket
 
 
 

@@ -17,8 +17,14 @@ object Application extends Controller {
   // dæmi 1
 
   def helloSky = Action {
-    Ok(views.html.basic("Halló Ský 2013!"))
+    Ok(views.html.basic("Halló Ský"))
   }
+
+
+
+
+
+
 
 
   // dæmi 2
@@ -28,6 +34,13 @@ object Application extends Controller {
     Ok(views.html.index("Halló Ský 2013!!", results))
   }
 
+
+
+
+
+
+
+
   // dæmi 3
 
   def descriptionUpdate(woeid: Integer) = Action.async {
@@ -35,6 +48,9 @@ object Application extends Controller {
       Ok ((response.xml \\ "description").text)
     }
   }
+
+
+
 
 
   // auðkenni nokkra staða á Íslandi.
